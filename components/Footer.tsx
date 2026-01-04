@@ -1,6 +1,7 @@
 import React from 'react';
 import { Facebook, Instagram, Twitter, Phone, Mail, MapPin, Linkedin, Video } from 'lucide-react';
 import { Page } from '../types';
+import Logo from './Logo';
 
 interface FooterProps {
     navigateTo: (page: Page) => void;
@@ -21,7 +22,10 @@ const Footer: React.FC<FooterProps> = ({ navigateTo }) => {
         <div className="grid md:grid-cols-4 gap-12">
           
           <div className="col-span-1 md:col-span-2">
-            <h3 className="text-white text-2xl font-black mb-6">Nep<span className="text-brandSaffron">AI</span> Marketing</h3>
+            <div className="flex items-center gap-3 mb-6">
+               <Logo className="w-10 h-10" />
+               <h3 className="text-white text-2xl font-black">Nep<span className="text-brandSaffron">AI</span> Marketing</h3>
+            </div>
             <p className="mb-8 max-w-sm leading-relaxed">
               Helping Nepali businesses grow through intelligent, data-driven marketing strategies. 
               Real results, transparent reporting.

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Page } from '../types';
-import { Menu, X, BrainCircuit } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import Logo from './Logo';
 
 interface HeaderProps {
   currentPage: Page;
@@ -32,9 +33,12 @@ const Header: React.FC<HeaderProps> = ({ currentPage, setCurrentPage }) => {
         <div className="flex justify-between h-20 items-center">
           {/* Logo */}
           <div 
-            className="flex-shrink-0 flex items-center gap-2 cursor-pointer group"
+            className="flex-shrink-0 flex items-center gap-3 cursor-pointer group"
             onClick={() => handleNav(Page.HOME)}
           >
+             <div className="group-hover:scale-110 transition-transform duration-300">
+               <Logo className="w-10 h-10" />
+             </div>
              <span className="text-2xl font-black text-white tracking-tighter group-hover:opacity-80 transition-opacity">
               Nep<span className="text-brandSaffron">AI</span>
             </span>

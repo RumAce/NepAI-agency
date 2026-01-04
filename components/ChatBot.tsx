@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageSquare, X, Send, Sparkles, Phone, User, Bot } from 'lucide-react';
+import { MessageSquare, X, Send, Phone, User } from 'lucide-react';
 import { generateChatResponse } from '../services/geminiService';
+import { Mascot } from './Mascot';
 
 interface Message {
   role: 'user' | 'model';
@@ -122,9 +123,11 @@ const ChatBot: React.FC = () => {
       >
         {/* Header */}
         <div className="bg-white/5 p-5 border-b border-white/5 flex items-center gap-4 backdrop-blur-sm">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-brandSaffron to-brandSaffronDark flex items-center justify-center shadow-lg relative group-hover:scale-105 transition-transform">
-            <Bot className="w-7 h-7 text-white" />
-            <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-slate-900"></div>
+          <div className="w-12 h-12 rounded-2xl bg-slate-800/80 border border-white/5 flex items-center justify-center shadow-lg relative group-hover:scale-105 transition-transform overflow-hidden">
+             {/* Gradient bg behind mascot */}
+            <div className="absolute inset-0 bg-gradient-to-br from-brandSaffron/20 to-blue-500/20"></div>
+            <Mascot className="w-10 h-10 relative z-10" />
+            <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-slate-900 z-20"></div>
           </div>
           <div>
             <h3 className="font-bold text-white text-base">NepAI Assistant</h3>
@@ -142,11 +145,15 @@ const ChatBot: React.FC = () => {
               className={`flex items-end gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
             >
               <div
-                className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mb-1 ${
-                  msg.role === 'user' ? 'bg-slate-700' : 'bg-brandSaffron/20'
+                className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 mb-1 overflow-hidden ${
+                  msg.role === 'user' ? 'bg-slate-700' : 'bg-slate-800'
                 }`}
               >
-                {msg.role === 'user' ? <User className="w-4 h-4 text-slate-300" /> : <Sparkles className="w-4 h-4 text-brandSaffron" />}
+                {msg.role === 'user' ? (
+                  <User className="w-4 h-4 text-slate-300" />
+                ) : (
+                  <Mascot className="w-6 h-6" />
+                )}
               </div>
               <div
                 className={`max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed shadow-sm ${
@@ -161,8 +168,8 @@ const ChatBot: React.FC = () => {
           ))}
           {isLoading && (
             <div className="flex items-end gap-3">
-               <div className="w-8 h-8 rounded-full bg-brandSaffron/20 flex items-center justify-center flex-shrink-0 mb-1">
-                  <Sparkles className="w-4 h-4 text-brandSaffron" />
+               <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center flex-shrink-0 mb-1 overflow-hidden">
+                  <Mascot className="w-6 h-6 animate-pulse" />
                </div>
                <div className="bg-slate-800/50 p-4 rounded-2xl rounded-tl-none border border-white/5">
                  <div className="flex gap-1.5">
